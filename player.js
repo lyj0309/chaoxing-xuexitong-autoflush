@@ -34,11 +34,8 @@ class Player{
  		let status=JSON.parse(await this.user.net.rawGet(`ananas/status/${this.playing.objectId}?k=9790&flag=normal&_dc=`+new Date().getTime()));
 
  		let duration=status.duration;
- 		if(duration<60*7)
+ 		if(duration<60*8) //小于8分钟的完整看完
  			this.speed=1;
-		else if(duration<60*12)
- 			this.speed=2;
- 		
 
 		if(this.progress/1000>=duration)
 		{	

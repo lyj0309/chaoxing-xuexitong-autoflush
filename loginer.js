@@ -32,9 +32,44 @@ class Loginer{//登录器
 		}
 
 		//这里处理Cookie，保留重要的部分
+		let vc3spliter={
+			start:0,
+			end:0,
+			vc3:"",
+		};
 
-		let cks=await this.net.getCookies();
-		return cks;
+		let ck=await this.net.getCookies();
+
+		vc3spliter.start=ck.indexOf(", vc3=");
+		vc3spliter.end=ck.indexOf(";",vc3spliter.start+1);
+		vc3spliter.vc3=ck.substring(vc3spliter.start+", vc3=".length,vc3spliter.end);
+			
+		let uidspliter={
+			start:0,
+			end:0,
+			uid:"",
+		};
+
+		uidspliter.start=ck.indexOf(", _uid=");
+		uidspliter.end=ck.indexOf(";",uidspliter.start+1);
+		uidspliter.uid=ck.substring(uidspliter.start+", _uid=".length,uidspliter.end);
+
+		let dspliter={
+			start:0,
+			end:0,
+			d:"",
+		};
+
+		dspliter.start=ck.indexOf(", _d=");
+		dspliter.end=ck.indexOf(";",dspliter.start+1);
+		dspliter.d=ck.substring(dspliter.start+", _d=".length,dspliter.end);
+		
+		let vc3=vc3spliter.vc3;
+		let uid=uidspliter.uid;
+		let d=dspliter.d;
+
+
+		return `vc3=${vc3}; _uid=${uid}; _d=${d}; `;
 	}
 	async getNumcode(){
 		let img=await this.net.getBin("num/code",true);
@@ -62,6 +97,8 @@ class Loginer{//登录器
 		},true);
 		let ck=await this.net.getCookies();
 		//console.log(ck,info);
+//		console.log(ck,uid,d,vc3);
+
 		if(ck.indexOf("userinfo")!=-1)
 			return;
 		else{

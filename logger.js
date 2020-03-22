@@ -17,7 +17,7 @@ var Net=require("./net.js");
  		let reportUrl=`${ruri}/${dtoken}?clazzId=${this.clazzId}&playingTime=${current}&duration=${duration}&clipTime=0_${duration}&objectId=${objectId}&otherInfo=${otherInfo}&jobid=${jobid}&userid=${this.user.userid}&isdrag=0&view=pc&enc=${enc}&rt=0.9&dtype=Video&_t=`+new Date().getTime();
 
  		//console.log(reportUrl)
- 		
+// 		console.log(this.user.net.getCookies());
  		return await this.user.net.rawGet(reportUrl);
  	}
  	encode(jobid,objectId,current,duration){//学习通加密算法

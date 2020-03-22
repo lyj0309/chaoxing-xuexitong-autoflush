@@ -12,6 +12,7 @@ let task=require("./courseTask.js");
 let speed=4.0; //刷课速率配置
 
 new Loginer().login().then((ck)=>{
+//	console.log(ck)
 	new task(ck,speed);
 }).catch((e)=>{
 	console.log(e);
