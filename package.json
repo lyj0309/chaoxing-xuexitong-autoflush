@@ -1,0 +1,17 @@
+{
+  "name": "chaoxing",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "854185073@qq.com",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "node-fetch": "^2.6.0",
+    "open": "^7.0.3",
+    "prompts": "^2.3.2",
+    "tough-cookie": "^4.0.0"
+  },
+  "scripts":{
+    "start":"node main.js"
+  }
+}
