@@ -8,6 +8,12 @@
 
 ![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
 
+---
+```
+若该程序对你有帮助，请给作者一颗star以表示鼓励，谢谢！
+```
+
+---
 
 用法:
 
