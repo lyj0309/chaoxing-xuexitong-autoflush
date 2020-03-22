@@ -55,7 +55,11 @@ class Player{
 	}
 	async eventLoop(){//自动消费播放队列
 		while(!this.end){
-			await this.doTick();
+			try{
+				await this.doTick();
+			}catch(e){
+				console.log(e);
+			}
 			await sleep(5000);
 		}
 	}

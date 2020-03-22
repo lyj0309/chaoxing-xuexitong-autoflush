@@ -48,7 +48,11 @@ class jobTask{
 	}
 	async eventLoop(){
 		while(!this.taskend){
-			await this.doTick();
+			try{
+				await this.doTick();
+			}catch(e){
+				console.log(e);
+			}
 			await sleep(1000);
 		}
 	}

@@ -79,7 +79,11 @@ class courseTask{
 	async eventLoop(){
 		await this.init();
 		while(!this.taskend){
-			await this.doTick();
+			try{
+				await this.doTick();
+			}catch(e){
+				console.log(e);
+			}			
 			await sleep(1000);
 		}
 	}
