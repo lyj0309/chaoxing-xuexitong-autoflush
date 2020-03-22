@@ -45,7 +45,7 @@ npm start
   
 Windows (x64)系统:  
   
-①进入 http://nodejs.cn/download/ 下载 nodejs 安装包  
+①进入 http://nodejs.cn/download/ 下载 nodejs 的 "windows安装包"  
 ②打开安装包并安装，以保证你的机器拥有 Node.js 运行环境  
 ③进入 http://npm.taobao.org/mirrors/git-for-windows/v2.26.0-rc2.windows.1/ 下载 git 安装包  
 你可以选择此版本：Git-2.26.0-rc2-64-bit.exe  
@@ -64,6 +64,12 @@ cd chaoxing-xuexitong-autoflush
 npm install
 ```
 每次执行请等待命令的执行完毕再运行下一个命令  
+然后通过运行命令  
+```
+npm run start
+```
+启动本程序
+
 ⑦之后你都可以通过打开cmd (Win+R) 再运行  
 ```
 cd chaoxing-xuexitong-autoflush
