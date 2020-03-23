@@ -5,7 +5,7 @@ var Net=require("./net.js");
  		this.user=user;
  		this.clazzId=classid;
  	}
- 	async sendLog(ruri,otherInfo,chapterId,jobid,objectId,current,status){
+ 	async sendLog(ruri,otherInfo,chapterId,jobid,objectId,current,status,isDrag){
  		//let otherInfo="nodeId_"+chapterId+"-cpi_82274641";
 
 		//console.log(status)
@@ -14,8 +14,9 @@ var Net=require("./net.js");
 
 
  		let enc=this.encode(jobid,objectId,current,duration);
- 		let reportUrl=`${ruri}/${dtoken}?clazzId=${this.clazzId}&playingTime=${current}&duration=${duration}&clipTime=0_${duration}&objectId=${objectId}&otherInfo=${otherInfo}&jobid=${jobid}&userid=${this.user.userid}&isdrag=0&view=pc&enc=${enc}&rt=0.9&dtype=Video&_t=`+new Date().getTime();
+ 		let reportUrl=`${ruri}/${dtoken}?clazzId=${this.clazzId}&playingTime=${current}&duration=${duration}&clipTime=0_${duration}&objectId=${objectId}&otherInfo=${otherInfo}&jobid=${jobid}&userid=${this.user.userid}&isdrag=${isDrag}&view=pc&enc=${enc}&rt=0.9&dtype=Video&_t=`+new Date().getTime();
 
+ 		//console.log(reportUrl)
  		//console.log(reportUrl)
 // 		console.log(this.user.net.getCookies());
  		return await this.user.net.rawGet(reportUrl);

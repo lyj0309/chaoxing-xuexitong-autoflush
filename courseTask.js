@@ -51,8 +51,8 @@ class courseTask{
 			for(let i=0;i<minheight-lines.length;i++)
 				lines.push("");
 
-		for(let i in lines)
-			this.gui_area.write(lines.join("\n"));
+		//for(let i in lines)
+			console.log(lines.join("\n"));
 
 	}
 	async fillCourses(){

@@ -31,21 +31,21 @@ class Player{
 
 	}
 	async init(){
-		
+
 	}
 	getStatusInfo(){
 		return this.statusinfo+"\n\n";
 	}
-	async doLog(status){
-		return await this.logger.sendLog(this.playing.ruri,this.playing.otherInfo,this.playing.chapid,this.playing.jobid,this.playing.objectId,this.progress/1000,status);
+	async doLog(status,isDrag){
+		return await this.logger.sendLog(this.playing.ruri,this.playing.otherInfo,this.playing.chapid,this.playing.jobid,this.playing.objectId,parseInt(this.progress/1000),status,isDrag);
 	}
 	async doTick(){
 
  		let status=JSON.parse(await this.user.net.rawGet(`ananas/status/${this.playing.objectId}?k=9790&flag=normal&_dc=`+new Date().getTime()));
 
  		let duration=status.duration;
- 		if(duration<60*6) //小于6分钟的完整看完
- 			this.speed=1;
+// 		if(duration<60*6) //小于6分钟的完整看完
+// 			this.speed=1;
 
 
 		let loginfo=`下次报告: ${(this.reportTimeInterval - this.tick)/1000}s`;
@@ -54,11 +54,11 @@ class Player{
 		{	
 			this.progress=duration*1000;
 			this.end=true;
-			loginfo=await this.doLog(status);
+			loginfo=await this.doLog(status,4);
 		}
 		if(this.tick>=this.reportTimeInterval){//时间达到需要log的时刻,sendLog一次
 			this.tick=0;
-			loginfo=await this.doLog(status);
+			loginfo=await this.doLog(status,0);
 		}
 		/*try{
 			if(JSON.parse(loginfo).isPassed==true);
