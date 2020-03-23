@@ -93,9 +93,9 @@ npm start
 的方式启动本程序  
   
 ---
-如果你觉得上面的步骤还是太麻烦，我直接提供了本程序的.exe（可执行文件，用nexe工程打包），可以直接执行
-下载地址：https://share.weiyun.com/5WZoFlQ
-
+如果你觉得上面的步骤还是太麻烦，我直接提供了本程序的.exe（可执行文件，用nexe工程打包），可以直接执行  
+下载地址：https://share.weiyun.com/5WZoFlQ  
+  
 ---
 说明：
 ```
