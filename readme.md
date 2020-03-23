@@ -2,6 +2,19 @@
 
 **发布日期: 2020-3-22**
 
+---
+
+2020-3-23 更新内容：
+
+①彻底修复有时刷完视频，无法成功完成任务点的BUG
+②新增任意调倍速功能，以超快的速度刷完所有章节
+
+预计下个版本新增功能：
+
+①激进模式：将以最快可能的速度和策略把所有视频解决。
+
+---
+
 声明: 本程序仅供学习研究程序工程原理
 
 ![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
