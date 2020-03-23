@@ -34,7 +34,7 @@ class Player{
  		let status=JSON.parse(await this.user.net.rawGet(`ananas/status/${this.playing.objectId}?k=9790&flag=normal&_dc=`+new Date().getTime()));
 
  		let duration=status.duration;
- 		if(duration<60*8) //小于8分钟的完整看完
+ 		if(duration<60*6) //小于6分钟的完整看完
  			this.speed=1;
 
 		if(this.progress/1000>=duration)
@@ -50,7 +50,7 @@ class Player{
 		}catch(e){}*/
 		//if(this.tick++%10==0)
 		this.statusinfo="正在 "+this.speed.toFixed(1)+" 倍速播放:  "+this.playing.property.name+"  "+((this.progress/1000)/duration*100).toFixed(2)+"% "+((this.progress/1000)+"/"+duration)+"   "+loginfo;
-		this.progress+=parseInt(this.speed*5000);
+		this.progress+=parseInt(this.speed*30000);
 
 	}
 	async eventLoop(){//自动消费播放队列
@@ -60,7 +60,7 @@ class Player{
 			}catch(e){
 				console.log(e);
 			}
-			await sleep(5000);
+			await sleep(30000);
 		}
 	}
 }

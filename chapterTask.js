@@ -84,10 +84,22 @@ class chapterTask{
 		return "   进行中的章节 -> "+this.current.title+"\n\n"+
 		this.current_task.getStatusInfo();
 	}
+	async studyChapter(chapter){
+		return this.user.net.post("mycourse/studentstudyAjax",{
+			courseId:chapter.courseid,
+			clazzid:this.clazzId,
+			chapterId:chapter.id,
+			cpi:0,
+			verificationcode:""
+		})
+
+	}
 	async doTick(){
 		let chapter=this.chapters.shift();
 		this.current=chapter;
 		if(!chapter){this.taskend=true;return;}
+
+		await this.studyChapter(chapter);
 
 		let course=new Course(this.clazzId,chapter.courseid,this.user);
 		let jobs=await course.getVideoJobs(chapter.id);

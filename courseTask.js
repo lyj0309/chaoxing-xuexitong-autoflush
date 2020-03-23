@@ -32,10 +32,13 @@ class courseTask{
 	}
 	async drawGUI(){
 		if(!this.current)return;
+
+		let nextcourse=this.courses[0];
+
 		let minheight=30;
 
 		let lines=this.current.getGUI();
-		lines.unshift("当前课程:"+(this.current_course?this.current_course.title:"无")+" 下一个课程:"+this.courses[0].title+"\n");
+		lines.unshift("当前课程:"+(this.current_course?this.current_course.title:"无")+" 下一个课程:"+(nextcourse?nextcourse.title:"无")+"\n");
 
 		if(lines.length<minheight)
 			for(let i=0;i<minheight-lines.length;i++)
