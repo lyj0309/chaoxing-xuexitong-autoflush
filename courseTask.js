@@ -3,7 +3,7 @@ var Net=require("./net.js");
 var CourseList=require("./courselist.js");
 var chapterTask=require("./chapterTask.js");
 var Course=require("./course.js");
-
+var {LiveContainer,LiveArea}=require("clui-live");
 
 class courseTask{
 	constructor(cookie,speed){
@@ -16,6 +16,7 @@ class courseTask{
 			this.drawGUI();
 		},1000)
 		this.eventLoop();
+
 	}
 	async init(){
 		this.net=new Net(this.domain);
@@ -29,6 +30,12 @@ class courseTask{
 		}
 		this.courses=[];
 		await this.fillCourses();	
+
+		console.log("\n".repeat(30));//清屏
+
+		this.gui=new LiveContainer();
+		this.gui_area=this.gui.createLiveArea();
+	
 	}
 	async drawGUI(){
 		if(!this.current)return;
@@ -45,7 +52,7 @@ class courseTask{
 				lines.push("");
 
 		for(let i in lines)
-			console.log(lines[i]);
+			this.gui_area.write(lines.join("\n"));
 
 	}
 	async fillCourses(){
