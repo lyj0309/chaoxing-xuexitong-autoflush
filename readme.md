@@ -7,6 +7,11 @@
 ①修复一章节多卡片，只支持自动过第一张卡片中的视频的问题  
 有关该问题的issue:  
 https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/3  
+
+②增加自定义选择课程功能  
+有关该特性建议的issue:  
+https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/3  
+
   
   
 2020-3-23 更新内容：  
