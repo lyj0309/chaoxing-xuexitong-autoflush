@@ -10,7 +10,8 @@
     "node-fetch": "^2.6.0",
     "open": "^7.0.3",
     "prompts": "^2.3.2",
-    "tough-cookie": "^4.0.0"
+    "tough-cookie": "^4.0.0",
+    "tty-table": "^4.1.1"
   },
   "scripts": {
     "start": "node main.js"

@@ -75,6 +75,7 @@ class Loginer{//登录器
 		let img=await this.net.getBin("num/code",true);
 		fs.writeFileSync(this.imgurl,img);
 		open(this.imgurl);
+		console.log("\n(提示:若你不是win系统,可以打开目录下的verifycode.png)");
 		let ret=await prompt({type:"text",name:"vercode",message:"已弹出验证码,请在这输入验证码"});
 		return ret["vercode"];
 	}

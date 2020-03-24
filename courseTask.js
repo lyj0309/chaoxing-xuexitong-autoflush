@@ -1,35 +1,23 @@
 var sleep=(t)=>new Promise((y)=>setTimeout(y,t));
 var Net=require("./net.js");
-var CourseList=require("./courselist.js");
 var chapterTask=require("./chapterTask.js");
 var Course=require("./course.js");
 var {LiveContainer,LiveArea}=require("clui-live");
 
 class courseTask{
-	constructor(cookie,speed){
+	constructor(courses,user,speed){
 		this.taskend=false;
-		this.domain="https://mooc1-1.chaoxing.com/";
-		this.cookie=cookie;
+		this.user=user;
 		this.speed=speed;
 		this.current=undefined;
+		this.courses=courses;
 		setInterval(()=>{
 			this.drawGUI();
-		},1000)
+		},1000);		
 		this.eventLoop();
 
 	}
 	async init(){
-		this.net=new Net(this.domain);
-		await this.net.setCookie(this.cookie);
-		this.userid=Net.parseCookies(this.cookie)["_uid"];
-
-		this.user={
-			userid:this.userid,
-			cookie:this.cookie,
-			net:this.net
-		}
-		this.courses=[];
-		await this.fillCourses();	
 
 		console.log("\n".repeat(30));//清屏
 
@@ -54,11 +42,6 @@ class courseTask{
 		//for(let i in lines)
 			this.gui_area.write(lines.join("\n"));
 
-	}
-	async fillCourses(){
-		let list=await new CourseList(this.user).getList();
-		this.courses=list;
-	//	this.courses.shift();
 	}
 	async doTick(){
 		let course=this.courses.shift();

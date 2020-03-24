@@ -9,16 +9,40 @@ console.log("本作品仅提供学习及研究程序原理用途\n\n");
 let Loginer=require("./loginer.js");
 let task=require("./courseTask.js");
 let prompt=require("prompts");
+let coursepicker=require("./coursepicker.js");
+let Net=require("./net.js");
 
+async function getUser(cookie){
+	let domain="https://mooc1-1.chaoxing.com/";
+	let net=new Net(domain);
+	await net.setCookie(cookie);
+	let userid=Net.parseCookies(cookie)["_uid"];
 
-new Loginer().login().then(async(ck)=>{
-//	console.log(ck)
+	let user={
+		userid:userid,
+		cookie,
+		net
+	}
+	return user;
+}
+async function start(){
+	let cookie=await (new Loginer().login());
+	
+	let user=await getUser(cookie);
+	console.log("\n");
+
 	let {speed}=await prompt({type:"number",name:"speed",message:"请输入刷课速率(不填默认为2)"});
 	if(!speed)speed=2.0;
 
-	new task(ck,speed);
-}).catch((e)=>{
-	console.log(e);
-});
+	let picker=new coursepicker(user);
+	let courses=await picker.pick();
+	
+
+//	console.log(courses);
+
+	new task(courses,user,speed);
+
+}
 
 
+start().catch(console.log);
