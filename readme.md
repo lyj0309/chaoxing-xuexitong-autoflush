@@ -10,8 +10,7 @@ https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/3
 
 ②增加自定义选择课程功能  
 有关该特性建议的issue:  
-https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/3  
-
+https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/4  
   
   
 2020-3-23 更新内容：  
