@@ -22,7 +22,7 @@ https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/2
 声明: 本程序仅供学习研究程序工程原理
 
 ![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
-
+![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
 ![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
 
 ---
