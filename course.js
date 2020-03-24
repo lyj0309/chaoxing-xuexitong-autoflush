@@ -54,30 +54,50 @@ class Course{
 		return data;
 	}
 	async getVideoJobs(chapid){//获取所有任务点
-		let card=await this.user.net.rawGet(`knowledge/cards?clazzid=${this.clazzId}&courseid=${this.courseid}&knowledgeid=${chapid}`);
-		//console.log(card,`knowledge/cards?clazzid=${this.clazzId}&courseid=${this.courseid}&knowledgeid=${chapid}`);
 
-		let loc1=card.indexOf("   mArg = ");
-		let loc2=card.indexOf(";\n}catch(e){");
-		let raw=card.slice(loc1+10,loc2);
-		try{
-			let jobs=JSON.parse(raw);
-			let def=jobs.defaults;
-			//console.log(def);
-			let videos=[];
-			for(let i in jobs.attachments){
-				if(jobs.attachments[i].type=="video"){
-					let o=jobs.attachments[i];
-					o.chapid=chapid;
-					o.ruri=def.reportUrl.replace("https://mooc1-1.chaoxing.com/","");
 
-					videos.push(o);
+		//一个章节会有好几张卡片,遍历一遍
+		
+		let getCardVideos=async(num)=>{	
+			let card=await this.user.net.rawGet(`knowledge/cards?clazzid=${this.clazzId}&courseid=${this.courseid}&knowledgeid=${chapid}&num=${num}`);
+			//console.log(card,`knowledge/cards?clazzid=${this.clazzId}&courseid=${this.courseid}&knowledgeid=${chapid}`);
+			let loc1=card.indexOf("   mArg = ");
+			let loc2=card.indexOf(";\n}catch(e){");
+			let raw=card.slice(loc1+10,loc2);
+			try{
+				let jobs=JSON.parse(raw);
+				let def=jobs.defaults;
+				//console.log(def);
+				let videos=[];
+				for(let i in jobs.attachments){
+					if(jobs.attachments[i].type=="video"){
+						let o=jobs.attachments[i];
+						o.chapid=chapid;
+						o.ruri=def.reportUrl.replace("https://mooc1-1.chaoxing.com/","");
+
+						videos.push(o);
+					}
 				}
+				return videos;
+			}catch(e){
+				throw "End of cards"
 			}
-			return videos;
-		}catch(e){
-			return [];
 		}
+
+		let vds=[];let count=0;
+		do{
+			let vd=[];
+			try{
+				vd=await getCardVideos(count);
+			}catch(e){
+				break;//到达最终卡片
+			}
+			vds=vds.concat(vd);
+
+			count++;
+		}while(true);
+		//console.log(`总共${count}页`);
+		return vds;
 	}
 
 }
