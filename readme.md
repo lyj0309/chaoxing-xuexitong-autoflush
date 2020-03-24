@@ -3,16 +3,20 @@
 **发布日期: 2020-3-22**
 
 ---
+2020-3-24 更新内容：  
+①修复一章节多卡片，只支持自动过第一张卡片中的视频的问题  
+有关该问题的issue:  
+https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/3  
+  
   
 2020-3-23 更新内容：  
   
 ①彻底修复有时刷完视频，无法成功完成任务点的BUG  
+有关该问题的issue:  
+https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/2  
+  
 ②新增任意调倍速功能，以超快的速度刷完所有章节  
-  
-预计下个版本新增功能：  
-  
-①激进模式：将以最快可能的速度和策略把所有视频解决。  
-  
+
 ---
 
 声明: 本程序仅供学习研究程序工程原理
@@ -91,10 +95,6 @@ cd chaoxing-xuexitong-autoflush
 npm start
 ```
 的方式启动本程序  
-  
----
-如果你觉得上面的步骤还是太麻烦，我直接提供了本程序的.exe（可执行文件，用nexe工程打包），可以直接执行  
-下载地址：https://share.weiyun.com/5WZoFlQ  
   
 ---
 说明：
