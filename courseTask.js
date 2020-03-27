@@ -5,12 +5,14 @@ var Course=require("./course.js");
 var {LiveContainer,LiveArea}=require("clui-live");
 
 class courseTask{
-	constructor(courses,user,speed){
+	constructor(courses,user,speed,autotest){
 		this.taskend=false;
 		this.user=user;
 		this.speed=speed;
 		this.current=undefined;
 		this.courses=courses;
+		this.autotest=autotest;
+
 		setInterval(()=>{
 			this.drawGUI();
 		},1000);		
@@ -53,7 +55,7 @@ class courseTask{
 		let cps=await cs.getChapters();
 //		console.log(course,cps);
 
-		let task=new chapterTask(course.clazzId,cps,this.user,this.speed);
+		let task=new chapterTask(course.clazzId,cps,this.user,this.speed,this.autotest);
 		this.current_course=course;
 		this.current=task;
 		await task.wait();

@@ -15,7 +15,7 @@ function reduceTree(tree,lvl){
 	return ret;
 }
 class chapterTask{
-	constructor(classid,chapters,user,playerspeed){
+	constructor(classid,chapters,user,playerspeed,autotest){
 		
 		let red=reduceTree(chapters);
 
@@ -24,7 +24,8 @@ class chapterTask{
 		this.user=user;
 		this.taskend=false;
 		this.clazzId=classid;
-	
+		this.autotest=autotest;
+
 		this.current=undefined;
 		this.current_task=undefined;
 		this.playerspeed=playerspeed;
@@ -103,7 +104,7 @@ class chapterTask{
 
 		let course=new Course(this.clazzId,chapter.courseid,this.user);
 		let jobs=await course.getJobs(chapter.id);
-		let task=new jobTask(this.clazzId,chapter,jobs,this.user,this.playerspeed);
+		let task=new jobTask(this.clazzId,chapter,jobs,this.user,this.playerspeed,this.autotest);
 		this.current_task=task;
 
 		this.refreshTipInfo();

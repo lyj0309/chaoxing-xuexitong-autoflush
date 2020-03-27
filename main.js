@@ -32,16 +32,20 @@ async function start(){
 	//console.log(cookie);
 	console.log("\n");
 
-	let {speed}=await prompt({type:"number",name:"speed",message:"请输入刷课速率(不填默认为2)"});
+	let {speed}=await prompt({type:"number",name:"speed",message:"请输入视频刷课速率(不填默认为2)"});
 	if(!speed)speed=2.0;
 
 	let picker=new coursepicker(user);
 	let courses=await picker.pick();
-	
+
+	console.log("\n");
+
+	let {test}=await prompt({type:"text",name:"test",message:"默认自动过测验,若需要关闭该功能请填写 no 并回车"})
+	let autotest=test=="no"?false:true;
 
 //	console.log(courses);
 
-	new task(courses,user,speed);
+	new task(courses,user,speed,autotest);
 
 }
 async function debug(cookie){

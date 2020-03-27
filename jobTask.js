@@ -3,13 +3,14 @@ var Player=require("./player.js");
 var testList=require("./work/testList.js");
 
 class jobTask{
-	constructor(classid,chapter,jobs,user,playerspeed){
+	constructor(classid,chapter,jobs,user,playerspeed,autotest){
 		this.user=user;
 		this.rawjobs=jobs.concat([]);
 		this.jobs=jobs;
 		this.taskend=false;
 		this.clazzId=classid;
 		this.chapter=chapter;
+		this.autotest=autotest;
 
 		this.indexes=0;
 		this.currentPlayer=undefined;
@@ -62,18 +63,19 @@ class jobTask{
 
 			if(detail.status==0){//还没做,尝试自动查答案过测验
 			//	console.log("还没做,尝试自动查答案过测验");
-			//	
-	
-				let answers=await list.queryAnswers(detail,0);
+			
+		//	console.log(this.autotest);
+				if(this.autotest){
+					let answers=await list.queryAnswers(detail,0);
 
-			//	console.log(answers)
-				if(answers)
-					await list.submitTest(detail,answers,detail.params,1);
+				//	console.log(answers)
+					if(answers)
+						await list.submitTest(detail,answers,detail.params,1);
 
 
-				let info=`检测到未完成测验,共${detail.set.length}题,从题库查得答案:${answers?answers.length:0}题`;
-				this.workinfo=info;
-
+					let info=`检测到未完成测验,共${detail.set.length}题,从题库查得答案:${answers?answers.length:0}题`;
+					this.workinfo=info;
+				}
 			}else if(detail.status==2){
 				await list.uploadUserAnswers(detail.set);
 			}
