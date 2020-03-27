@@ -8,24 +8,32 @@ class QuesBank{
 	constructor(){
 		this.net=new Net("http://quesbank.math.cat:6060/");
 	}
-	upload(ques,courseid,chapterid,classid){
+	async upload(ques,courseid,chapterid,classid){
 		//console.log(ques,courseid,chapterid,classid)
-		return this.net.post("bank/upload",{
-			ques:JSON.stringify({
-				courseid,
-				chapterid,
-				classid,
-				...ques				
-			})
-		})
+		let topost={
+				ques:Buffer.from(JSON.stringify({
+					courseid,
+					chapterid,
+					classid,
+					...ques				
+				})).toString("base64")
+			};
+		try{
+			return await this.net.post("bank/uploadBase64",topost);
+		}catch(e){
+
+			//console.log(e,topost);
+			//process.exit();
+			return;
+		}
 	}
 	async download(titles){
 //		console.log("downloading",titles)
 		//let target=Object.assign(titles,{});
 	//	target=target.map((x)=>(x.title));
 //		console.log(target);
-		let raw=await this.net.post("bank/download",{
-			titles:JSON.stringify(titles)
+		let raw=await this.net.post("bank/downloadBase64",{
+			titles:Buffer.from(JSON.stringify(titles)).toString("base64")
 		});
 		try{
 			return JSON.parse(raw);	

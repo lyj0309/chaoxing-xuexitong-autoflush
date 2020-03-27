@@ -338,6 +338,7 @@ if(status==0 || status==2)
 	}
 	async uploadUserAnswers(detail){
 		let bank=new quesbank();
+		//console.log(detail)
 		for(let i in detail){
 			if(detail[i].correct)
 				await bank.upload(detail[i],this.courseid,this.chapterid,this.classid);
@@ -362,8 +363,8 @@ if(status==0 || status==2)
 			answers[i].optionid=set[i].optionid;
 			
 		}
-		if(bypasscount>bypass)return;
-		return answers;
+		if(bypasscount>bypass)return {answers:undefined,count:set.length-bypasscount};
+		return {answers,count:set.length-bypasscount};
 	}
 	async submitTest(detail,answers,params,submit){//提交测验
 		let pyFlag="";

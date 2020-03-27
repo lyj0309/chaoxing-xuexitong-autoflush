@@ -66,14 +66,14 @@ class jobTask{
 			
 		//	console.log(this.autotest);
 				if(this.autotest){
-					let answers=await list.queryAnswers(detail,0);
+					let {answers,count}=await list.queryAnswers(detail,0);
 
 				//	console.log(answers)
 					if(answers)
 						await list.submitTest(detail,answers,detail.params,1);
 
 
-					let info=`检测到未完成测验,共${detail.set.length}题,从题库查得答案:${answers?answers.length:0}题`;
+					let info=`检测到未完成测验,共${detail.set.length}题,从题库查得答案:${count}题`;
 					this.workinfo=info;
 				}
 			}else if(detail.status==2){
