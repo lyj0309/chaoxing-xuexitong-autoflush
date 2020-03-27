@@ -53,7 +53,7 @@ class Course{
 		//console.log(chaps);
 		return data;
 	}
-	async getVideoJobs(chapid){//获取所有任务点
+	async getJobs(chapid){//获取所有任务点
 
 
 		//一个章节会有好几张卡片,遍历一遍
@@ -76,7 +76,7 @@ class Course{
 						o.ruri=def.reportUrl.replace("https://mooc1-1.chaoxing.com/","");
 
 						videos.push(o);
-					}
+					}else videos.push(jobs.attachments[i]);
 				}
 				return videos;
 			}catch(e){

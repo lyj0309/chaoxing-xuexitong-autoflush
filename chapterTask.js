@@ -102,8 +102,8 @@ class chapterTask{
 		await this.studyChapter(chapter);
 
 		let course=new Course(this.clazzId,chapter.courseid,this.user);
-		let jobs=await course.getVideoJobs(chapter.id);
-		let task=new jobTask(this.clazzId,jobs,this.user,this.playerspeed);
+		let jobs=await course.getJobs(chapter.id);
+		let task=new jobTask(this.clazzId,chapter,jobs,this.user,this.playerspeed);
 		this.current_task=task;
 
 		this.refreshTipInfo();

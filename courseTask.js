@@ -40,7 +40,8 @@ class courseTask{
 				lines.push("");
 
 		//for(let i in lines)
-			this.gui_area.write(lines.join("\n"));
+	//		this.gui_area.write(lines.join("\n"));
+			console.log(lines.join("\n"));
 
 	}
 	async doTick(){

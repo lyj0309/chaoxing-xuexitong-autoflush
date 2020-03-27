@@ -29,6 +29,7 @@ async function start(){
 	let cookie=await (new Loginer().login());
 	
 	let user=await getUser(cookie);
+	//console.log(cookie);
 	console.log("\n");
 
 	let {speed}=await prompt({type:"number",name:"speed",message:"请输入刷课速率(不填默认为2)"});
@@ -43,6 +44,16 @@ async function start(){
 	new task(courses,user,speed);
 
 }
+async function debug(cookie){
+
+	let user=await getUser(cookie);
+	let speed=16.0;
+
+	let picker=new coursepicker(user);
+	await picker.getAllCourses();
+	new task(picker.list.slice(6),user,speed);
+}
 
 
 start().catch(console.log);
+

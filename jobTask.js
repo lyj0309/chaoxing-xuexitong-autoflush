@@ -1,16 +1,21 @@
 var sleep=(t)=>new Promise((y)=>setTimeout(y,t));
 var Player=require("./player.js");
+var testList=require("./work/testList.js");
 
 class jobTask{
-	constructor(classid,jobs,user,playerspeed){
+	constructor(classid,chapter,jobs,user,playerspeed){
 		this.user=user;
 		this.rawjobs=jobs.concat([]);
 		this.jobs=jobs;
 		this.taskend=false;
 		this.clazzId=classid;
-		this.index=0;
+		this.chapter=chapter;
+
+		this.indexes=0;
 		this.currentPlayer=undefined;
 		this.playerspeed=playerspeed;
+
+		this.workinfo="测验器就绪中...";
 		this.eventLoop();
 	}
 	async wait(timeout){
@@ -25,11 +30,11 @@ class jobTask{
 		}
 	}
 	getJobProgress(){
-		return {current:this.index,total:this.rawjobs.length};
+		return {current:this.rawjobs.length-this.jobs.length,total:this.rawjobs.length};
 	}
 	getStatusInfo(){
-		if(!this.currentPlayer)return "播放器就绪中...\n\n";
-		return this.currentPlayer.getStatusInfo();
+		if(!this.currentPlayer)return "播放器就绪中...\n\n"+this.workinfo+"\n";
+		return this.currentPlayer.getStatusInfo()+"\n"+this.workinfo+"\n";
 
 	}
 	async doTick(){
@@ -37,14 +42,45 @@ class jobTask{
 		if(!job){this.taskend=true;return;}
 		
 
-		if(!job.isPassed){
+		await this.handleJob(job);
+		
+		this.indexes++;
+	}
+	async handleJob(job){
+		switch(job.type){
+			case "video"://视频任务
+				if(!job.isPassed){
+					let player=new Player(this.clazzId,this.user,job,this.playerspeed);
+					this.currentPlayer=player;
+					await player.wait();
+				}		
+			break;
+			case "workid"://测验
+				let list=new testList(this.chapter.courseid,this.chapter.id,this.clazzId,job,this.user);
+				let detail=await list.getDetail();
+		
 
-			let player=new Player(this.clazzId,this.user,job,this.playerspeed);
-			this.currentPlayer=player;
+			if(detail.status==0){//还没做,尝试自动查答案过测验
+			//	console.log("还没做,尝试自动查答案过测验");
+			//	
+	
+				let answers=await list.queryAnswers(detail,0);
 
-			await player.wait();
+			//	console.log(answers)
+				if(answers)
+					await list.submitTest(detail,answers,detail.params,1);
+
+
+				let info=`检测到未完成测验,共${detail.set.length}题,从题库查得答案:${answers?answers.length:0}题`;
+				this.workinfo=info;
+
+			}else if(detail.status==2){
+				await list.uploadUserAnswers(detail.set);
+			}
+
+		
+			break;
 		}
-		this.index++;
 	}
 	async eventLoop(){
 		while(!this.taskend){

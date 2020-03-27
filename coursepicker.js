@@ -46,6 +46,8 @@ class CoursePicker{
 		gui+="请选择你要切换选中的课程序号,不填则直接开始刷课:\n"
 
 		this.gui_area.write(gui);
+		//console.log(gui);
+
 	}
 	async input(){
 		return (await prompt({type:"text",name:"input",message:""}));
