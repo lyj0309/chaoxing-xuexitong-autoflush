@@ -6,7 +6,7 @@ let Net=require("../net.js");
 
 class QuesBank{
 	constructor(){
-		this.net=new Net("http://127.0.0.1:6060/");
+		this.net=new Net("http://www.math.cat:6060/");
 	}
 	upload(ques,courseid,chapterid,classid){
 		//console.log(ques,courseid,chapterid,classid)
