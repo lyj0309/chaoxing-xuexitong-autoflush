@@ -50,18 +50,21 @@ class Player{
 
 		let loginfo=`下次报告: ${(this.reportTimeInterval - this.tick)/1000}s`;
 
+		let reportinfo="";
 		if(this.progress/1000>=duration)
 		{	
 			this.progress=duration*1000;
 			this.end=true;
-			loginfo=await this.doLog(status,4);
+			reportinfo=await this.doLog(status,4);
+			loginfo=reportinfo;
 		}
 		if(this.tick>=this.reportTimeInterval){//时间达到需要log的时刻,sendLog一次
 			this.tick=0;
-			loginfo=await this.doLog(status,0);
+			reportinfo=await this.doLog(status,0);
+			loginfo=reportinfo;
 		}
 		try{
-			if(JSON.parse(loginfo).isPassed==true);
+			if(JSON.parse(reportinfo).isPassed==true)
 				this.end=true;
 		}catch(e){}
 
