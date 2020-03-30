@@ -60,10 +60,11 @@ class Player{
 			this.tick=0;
 			loginfo=await this.doLog(status,0);
 		}
-		/*try{
+		try{
 			if(JSON.parse(loginfo).isPassed==true);
 				this.end=true;
-		}catch(e){}*/
+		}catch(e){}
+
 		//if(this.tick++%10==0)
 		this.statusinfo="正在 "+this.speed.toFixed(1)+" 倍速播放:  "+this.playing.property.name+"  "+((this.progress/1000)/duration*100).toFixed(2)+"% "+((this.progress/1000)+"/"+duration)+"   "+loginfo;
 		this.progress+=parseInt(this.speed*this.simspeed);

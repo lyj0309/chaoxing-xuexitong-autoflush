@@ -50,7 +50,7 @@ class jobTask{
 	async handleJob(job){
 		switch(job.type){
 			case "video"://视频任务
-				if(!job.isPassed){
+				if(job.job){
 					let player=new Player(this.clazzId,this.user,job,this.playerspeed);
 					this.currentPlayer=player;
 					await player.wait();

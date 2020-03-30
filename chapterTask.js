@@ -104,6 +104,7 @@ class chapterTask{
 
 		let course=new Course(this.clazzId,chapter.courseid,this.user);
 		let jobs=await course.getJobs(chapter.id);
+		//console.log("jobs",jobs)
 		let task=new jobTask(this.clazzId,chapter,jobs,this.user,this.playerspeed,this.autotest);
 		this.current_task=task;
 
