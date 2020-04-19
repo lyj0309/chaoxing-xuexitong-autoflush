@@ -38,6 +38,11 @@ async function start(){
 	let picker=new coursepicker(user);
 	let courses=await picker.pick();
 
+	if(!courses.length) {
+		console.log("似乎没有课程可用, 程序已退出");
+		return;
+	}
+
 	console.log("\n");
 
 	let {test}=await prompt({type:"text",name:"test",message:"默认自动过测验,若需要关闭该功能请填写 no 并回车"})
