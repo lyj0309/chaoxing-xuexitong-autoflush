@@ -46,7 +46,12 @@ class Player{
  		let duration=status.duration;
 // 		if(duration<60*6) //小于6分钟的完整看完
 // 			this.speed=1;
-
+		//当视频失效时，duration为空
+		if(!duration) {
+			console.log(`\n${this.playing.property.name} <- 该视频无法解析, 已跳过\n`);
+			this.end = true;
+			return;
+		}
 
 		let loginfo=`下次报告: ${(this.reportTimeInterval - this.tick)/1000}s`;
 
