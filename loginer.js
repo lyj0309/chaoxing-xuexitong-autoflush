@@ -7,7 +7,7 @@ let Net=require("./net.js");
 class Loginer{//登录器
 	constructor(){
 		this.net=new Net("http://www.xuexi365.com/");
-		this.imgurl=__dirname+"/verifycode.png";
+		this.imgurl=__dirname+"/verifycode.jpg";
 	//	this.login();
 	}
 	async login(){//设置各种引导,最终返回登录Cookie
