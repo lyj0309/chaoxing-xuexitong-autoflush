@@ -74,8 +74,10 @@ class Loginer{//登录器
 	async getNumcode(){
 		let img=await this.net.getBin("num/code",true);
 		fs.writeFileSync(this.imgurl,img);
-		open(this.imgurl).catch((e)=>{
+		open(this.imgurl,{wait:true}).catch((e)=>{
 				console.log("尝试打开验证码图片失败,请手动打开.\n");
+		}).then(()=>{
+			//	console.log("验证码窗口已关闭");
 		});
 
 		console.log("\n(提示:若你不是win系统,可以打开目录下的verifycode.jpg)");
