@@ -2,7 +2,7 @@
   
 **发布日期: 2020-3-22**  
   
-实时信息：题库当前已有![Image text](http://quesbank.math.cat:6061/)条记录.  
+实时信息：题库当前已有![Image text](http://quesbank.math.cat:6061/count.jpg)条记录.  
   
 ---
 2020-3-31 更新内容:
