@@ -2,7 +2,7 @@
   
 **发布日期: 2020-3-22**  
   
-实时信息：题库当前已有![Image text](http://quesbank.math.cat:6061/count.jpg)条记录.  
+实时信息：题库当前已有![quesbankcount](http://quesbank.math.cat:6061/count.jpg)条记录.  
   
 ---
 2020-3-31 更新内容:
@@ -56,9 +56,9 @@ https://github.com/ZhyMC/chaoxing-xuexitong-autoflush/issues/2
 
 声明: 本程序仅供学习研究程序工程原理
 
-![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
-![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
-![Image text](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
+![desc1](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
+![desc2](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
+![desc3](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
 
 ---
 ```
