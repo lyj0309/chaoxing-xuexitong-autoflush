@@ -2,8 +2,8 @@
   
 **发布日期: 2020-3-22**  
   
-实时信息：题库当前已有![quesbankcount](http://quesbank.math.cat:6061/quesbankcount.jpg)条记录.  
-  
+![count](https://img.shields.io/endpoint?url=https://quesbank.math.cat:6062/bank/getCountInfo)
+
 ---
 2020-3-31 更新内容:
   
