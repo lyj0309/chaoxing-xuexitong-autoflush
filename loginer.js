@@ -114,9 +114,12 @@ class Loginer{//登录器
 		}, true)
 
 		try {
-			info = JSON.parse(info)
-
+			info = JSON.parse(info)	
 			if(!info.result) {
+				if(info.errorMsg === "用户名或密码错误") {
+					console.log(info.errorMsg);
+					process.exit(0)
+				}
 				return info;
 			}
 

@@ -100,7 +100,7 @@ class CoursePicker{
 				}
 				config.pickinfos = pickinfos;
 				await config.write();
-				console.log("课程获取完毕请调成config.json并重启该程序");
+				console.log("课程字段已生成请修改config.json中的pickinfos字段来通过部分课程并重启该程序");
 				process.exit(0);
 			}
 		}
