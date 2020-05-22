@@ -5,6 +5,32 @@
 ![count](https://img.shields.io/endpoint?url=https://quesbank.math.cat:6062/bank/getCountInfo)
 
 ---
+2020-5-21 更新内容:  
+添加了一个登录接口使得无验证码登录变得可能但是当新接口失效时会回退至上版本接口以保证程序可用性  
+
+增加了config.json文件，通过config文件可以实现无交互登录以及筛选需要刷的课程, 该文件不存在时程序会以默认方式运行  
+使用方法:  
+在程序根目录下增加config.json文件, 并按照以下形式进行编写
+```
+{
+	"uname": string, //手机号
+	"password": string, //密码
+	// 如果上面两个字段任何一个不存在程序都会让你输入一次完整的账号密码, 只有这两个是必要字段
+	
+	"speed": number, // 刷课速度 默认为 2  
+	"test": boolean, // 是否过测试 默认为true  
+	"pick": boolean, // 是否通过配置文件进行课程配置 默认为false  
+	// 以上默认值都之会在config.json读取成功且没有该字段时生效, 如果config.json不存在则全部由键盘输入  
+	// 当pick为true时且pickinfos字段不存在, 程序只会记录所有课程并写入pickinfos然后结束, pickinfos字段存在时程序会读取pickinfos并跳过所有picked为false的课程  
+	
+	"pickinfos": {
+
+	}
+	// 该字段由程序生成请勿手动编写, 只需要调整该字段内picked值即可
+	// 重新获取课程请删除该字段而不仅是值
+
+}
+```
 2020-3-31 更新内容:
   
 修复一个任务点识别的问题  
