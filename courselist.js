@@ -19,7 +19,7 @@ class courselist{
 			let target=url.parse(t_url);
 			let query=qs.parse(target.query);
 			let title=course.attr("title");
-			built.push({courseId:query.courseId,clazzId:query.clazzid,title});
+			built.push({courseId:query.courseid,clazzId:query.clazzid,title});
 		}
 		return built;
 	}
