@@ -26,8 +26,9 @@ class courselist {
             }
             let target = url.parse(t_url);
             let query = qs.parse(target.query);
+            // let title = course.attr("title");
+            // 寻找子元素就好了
             let title = course.find("span").attr("title");
-            // let title = courses.eq(i).find(".course-name").text();
             built.push({courseId: query.courseid, clazzId: query.clazzid, title});
         }
         return built;

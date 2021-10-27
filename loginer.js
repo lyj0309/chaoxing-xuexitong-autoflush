@@ -7,6 +7,8 @@ let Net = require("./net.js");
 class Loginer {
   //登录器
   constructor(config) {
+    // 这里登陆接口更换
+    // 快速登陆早就废了,而且验证码也是来自下面这个域名,就这么改了
     this.net = new Net("https://passport2-api.chaoxing.com/");
     // this.net = new Net("http://www.xuexi365.com/");
     this.imgurl = __dirname + "/verifycode.jpg";
@@ -183,6 +185,7 @@ class Loginer {
     if (ck.indexOf("userinfo") != -1) {
       return;
     } else {
+      // 不需要这些,也没有任何影响
       // let $ = cheerio.load(info);
       // let error = $("#show_error").text();
       // console.log("error",error);
