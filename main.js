@@ -30,7 +30,7 @@ async function start() {
   let cookie = await new Loginer().login(config);
 
   let user = await getUser(cookie);
-  console.log(cookie);
+  // console.log(cookie);
   console.log("\n");
 
   if (!config.speed) {

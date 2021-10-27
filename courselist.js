@@ -15,7 +15,7 @@ class courselist {
             courseType:1
         }));
         // let courses = $(".course");
-        console.log($().html());
+        // console.log($().html());
         let courses = $("#courseList").find(".course");
         let built = [];
         for (let i = 0; i < courses.length; i++) {
@@ -26,7 +26,7 @@ class courselist {
             }
             let target = url.parse(t_url);
             let query = qs.parse(target.query);
-            let title = course.attr("title");
+            let title = course.find("span").attr("title");
             // let title = courses.eq(i).find(".course-name").text();
             built.push({courseId: query.courseid, clazzId: query.clazzid, title});
         }
