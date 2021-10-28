@@ -35,9 +35,9 @@
 
 声明: 本程序仅供学习研究程序工程原理
 
-![desc1](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
-![desc2](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
-![desc3](https://raw.githubusercontent.com/ZhyMc/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
+![desc1](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
+![desc2](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
+![desc3](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
 
 ---
 
@@ -54,7 +54,7 @@
 ①
 
 ```
-git clone https://github.com/ZhyMc/chaoxing-xuexitong-autoflush
+git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
 ```
 
 ②
@@ -93,7 +93,7 @@ Windows (x64)系统:
 ⑥ 依次敲入命令并执行
 
 ```
-git clone https://github.com/ZhyMc/chaoxing-xuexitong-autoflush
+git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
 ```
 
 ```
