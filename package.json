@@ -5,7 +5,7 @@
   "author": "854185073@qq.com",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
+    "cheerio": "^1.0.0-rc.10",
     "clui-live": "^0.3.4",
     "node-fetch": "^2.6.0",
     "open": "^7.0.3",

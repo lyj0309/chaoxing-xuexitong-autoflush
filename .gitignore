@@ -4,3 +4,5 @@ verifycode.jpg
 yarn.lock
 debug.js
 config.json
+.idea/
+.vscode/

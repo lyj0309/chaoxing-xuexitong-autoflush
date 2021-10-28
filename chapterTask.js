@@ -1,132 +1,154 @@
-var sleep=(t)=>new Promise((y)=>setTimeout(y,t));
-let Course=require("./course.js");
-let jobTask=require("./jobTask.js")
+var sleep = (t) => new Promise((y) => setTimeout(y, t));
+let Course = require("./course.js");
+let jobTask = require("./jobTask.js");
 
-function reduceTree(tree,lvl){
-	if(!lvl)lvl=0;
+function reduceTree(tree, lvl) {
+  if (!lvl) lvl = 0;
 
-	let ret=[];	
-	for(let i in tree)
-	{
-		ret.push({id:tree[i].id,title:tree[i].title,courseid:tree[i].courseid,lvl});
-		if(tree[i].subchaps && tree[i].subchaps.length>0)
-			ret=ret.concat(reduceTree(tree[i].subchaps,lvl+1));
-	}
-	return ret;
+  let ret = [];
+  for (let i in tree) {
+    ret.push({
+      id: tree[i].id,
+      title: tree[i].title,
+      courseid: tree[i].courseid,
+      lvl,
+    });
+    if (tree[i].subchaps && tree[i].subchaps.length > 0)
+      ret = ret.concat(reduceTree(tree[i].subchaps, lvl + 1));
+  }
+  return ret;
 }
-class chapterTask{
-	constructor(classid,chapters,user,playerspeed,autotest){
-		
-		let red=reduceTree(chapters);
+class chapterTask {
+  constructor(classid, chapters, user, playerspeed, autotest) {
+    let red = reduceTree(chapters);
 
-		this.rawchapters=red.concat([]);
-		this.chapters=red;
-		this.user=user;
-		this.taskend=false;
-		this.clazzId=classid;
-		this.autotest=autotest;
+    this.rawchapters = red.concat([]);
+    this.chapters = red;
+    this.user = user;
+    this.taskend = false;
+    this.clazzId = classid;
+    this.autotest = autotest;
 
-		this.current=undefined;
-		this.current_task=undefined;
-		this.playerspeed=playerspeed;
+    this.current = undefined;
+    this.current_task = undefined;
+    this.playerspeed = playerspeed;
 
-		this.eventLoop();
-	}
+    this.eventLoop();
+  }
 
-	async wait(timeout){
-		let tick=0;
-		if(!timeout)timeout=9999999;
-		while(true){
-			if(this.taskend)
-				return;
+  async wait(timeout) {
+    let tick = 0;
+    if (!timeout) timeout = 9999999;
+    while (true) {
+      if (this.taskend) return;
 
-			if(tick++>timeout)return;
-			await sleep(500);
-		}
-	}
-	getGUI(){
-		if(!this.current)return [];
+      if (tick++ > timeout) return;
+      await sleep(500);
+    }
+  }
+  getGUI() {
+    if (!this.current) return [];
 
-		let built=[];
-		//built.push("\n\n\n\n\n\n\n\n\n\n");
-		built.push("\n");
-		let focus=-1;
-		for(let i in this.rawchapters){
-			let iscurrent=this.rawchapters[i].id==this.current.id;
-			if(iscurrent)focus=i;
-			built.push("      ".repeat(this.rawchapters[i].lvl)+this.rawchapters[i].title+" "+(iscurrent?"  <-  ":"")+" "+(this.rawchapters[i].tipinfo || ""));
-		}
-		let offset=10;
-		let start=parseInt(focus)-offset>0?(parseInt(focus)-offset):0;
-		let end=parseInt(focus)+offset>built.length-1?(built.length-1):(parseInt(focus)+offset);
-		
-		let rebuilt=[];
+    let built = [];
+    //built.push("\n\n\n\n\n\n\n\n\n\n");
+    built.push("\n");
+    let focus = -1;
+    for (let i in this.rawchapters) {
+      let iscurrent = this.rawchapters[i].id == this.current.id;
+      if (iscurrent) focus = i;
+      built.push(
+        "      ".repeat(this.rawchapters[i].lvl) +
+          this.rawchapters[i].title +
+          " " +
+          (iscurrent ? "  <-  " : "") +
+          " " +
+          (this.rawchapters[i].tipinfo || "")
+      );
+    }
+    let offset = 10;
+    let start = parseInt(focus) - offset > 0 ? parseInt(focus) - offset : 0;
+    let end =
+      parseInt(focus) + offset > built.length - 1
+        ? built.length - 1
+        : parseInt(focus) + offset;
 
-		for(let i in built){
-			if(parseInt(i)>start && parseInt(i)<end)
-				rebuilt.push(built[i]);
-		}
-		rebuilt.unshift(this.getStatusInfo());
-		
-	//	this.refreshTipInfo();
-		return rebuilt;	
-	}
-	refreshTipInfo(){
-		if(!this.current_task)return;
+    let rebuilt = [];
 
-		let jobprogress=this.current_task.getJobProgress();
-		let tipinfo=`(${jobprogress.current}/${jobprogress.total})`;
-		this.rawchapters.find((x)=>(x.id==this.current.id)).tipinfo=tipinfo;
-		return tipinfo;
-	}
-	getStatusInfo(){
-		if(!this.current || ! this.current_task)return "就绪中...";
+    for (let i in built) {
+      if (parseInt(i) > start && parseInt(i) < end) rebuilt.push(built[i]);
+    }
+    rebuilt.unshift(this.getStatusInfo());
 
-		return "   进行中的章节 -> "+this.current.title+"\n\n"+
-		this.current_task.getStatusInfo();
-	}
-	async studyChapter(chapter){
-		return this.user.net.post("mycourse/studentstudyAjax",{
-			courseId:chapter.courseid,
-			clazzid:this.clazzId,
-			chapterId:chapter.id,
-			cpi:0,
-			verificationcode:""
-		})
+    //	this.refreshTipInfo();
+    return rebuilt;
+  }
+  refreshTipInfo() {
+    if (!this.current_task) return;
 
-	}
-	async doTick(){
-		let chapter=this.chapters.shift();
-		this.current=chapter;
-		if(!chapter){this.taskend=true;return;}
+    let jobprogress = this.current_task.getJobProgress();
+    let tipinfo = `(${jobprogress.current}/${jobprogress.total})`;
+    this.rawchapters.find((x) => x.id == this.current.id).tipinfo = tipinfo;
+    return tipinfo;
+  }
+  getStatusInfo() {
+    if (!this.current || !this.current_task) return "就绪中...";
 
-		await this.studyChapter(chapter);
+    return (
+      "   进行中的章节 -> " +
+      this.current.title +
+      "\n\n" +
+      this.current_task.getStatusInfo()
+    );
+  }
+  async studyChapter(chapter) {
+    return this.user.net.post("mycourse/studentstudyAjax", {
+      courseId: chapter.courseid,
+      clazzid: this.clazzId,
+      chapterId: chapter.id,
+      cpi: 0,
+      verificationcode: "",
+    });
+  }
+  async doTick() {
+    let chapter = this.chapters.shift();
+    this.current = chapter;
+    if (!chapter) {
+      this.taskend = true;
+      return;
+    }
 
-		let course=new Course(this.clazzId,chapter.courseid,this.user);
-		let jobs=await course.getJobs(chapter.id);
-		//console.log("jobs",jobs)
-		let task=new jobTask(this.clazzId,chapter,jobs,this.user,this.playerspeed,this.autotest);
-		this.current_task=task;
+    await this.studyChapter(chapter);
 
-		this.refreshTipInfo();
-		await task.wait();
-		this.refreshTipInfo();
+    let course = new Course(this.clazzId, chapter.courseid, this.user);
+    let jobs = await course.getJobs(chapter.id);
+    //console.log("jobs",jobs)
+    let task = new jobTask(
+      this.clazzId,
+      chapter,
+      jobs,
+      this.user,
+      this.playerspeed,
+      this.autotest
+    );
+    this.current_task = task;
 
-	}
-	async eventLoop(){
-		while(!this.taskend){
-			try{
-				await this.doTick();
-			}catch(e){
-				console.log(e);
-			}
-			await sleep(1000);
-		}
-	}
-
+    this.refreshTipInfo();
+    await task.wait();
+    this.refreshTipInfo();
+  }
+  async eventLoop() {
+    while (!this.taskend) {
+      try {
+        await this.doTick();
+      } catch (e) {
+        console.log(e);
+      }
+      await sleep(1000);
+    }
+  }
 }
 
-module.exports=chapterTask;
+module.exports = chapterTask;
 
 /*
 var Net=require("./net.js");
