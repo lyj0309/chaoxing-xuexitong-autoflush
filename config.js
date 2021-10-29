@@ -8,6 +8,7 @@ class Config {
 		this.speed = null;
 		this.pick = null;
 		this.test = null;
+		// 没啥用,主要是考虑到帐号切换和逻辑问题
 		this.saveCookie = null;
 		this.pickinfos = null;
 	}
