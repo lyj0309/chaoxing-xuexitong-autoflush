@@ -94,6 +94,8 @@ Windows (x64)系统:
 
 ```
 git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
+可以使用镜像站来解决仓库克隆的网络问题：
+git clone https://hub.fastgit.org/wyattzheng/chaoxing-xuexitong-autoflush
 ```
 
 ```
