@@ -128,6 +128,28 @@ npm start
 的方式启动本程序
 
 ---
+使用 Docker 运行：
+
+clone 仓库:
+```
+git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
+```
+
+构建镜像：
+```
+cd ./chaoxing-xuexitong-autoflush
+docker build -t chaoxing .
+```
+
+编辑配置文件：
+复制`config.example.json`，编辑你的配置文件，命名为 `config.json`，并放在当前目录
+
+运行容器:
+```
+docker run -v ${PWD}/config.json:/app/config.json -it chaoxing 
+```
+
+---
 
 说明：
 

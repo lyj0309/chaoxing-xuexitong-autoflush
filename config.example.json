@@ -1,0 +1,10 @@
+{
+	"uname": "你的手机号",
+	"password": "你的密码",
+	"speed": 2,
+	"test": true,
+	"pick": false,	
+	"pickinfos": {
+
+	}
+}
