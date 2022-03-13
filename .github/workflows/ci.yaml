@@ -3,19 +3,26 @@ name: ci
 on:
   push:
     branches:
-      - 'master'
+      - "master"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '17'
+          node-version: "17"
       - run: npm install
       - run: npm install -g pkg
-      - run: pkg --targets node17-linux,node17-linux-arm64,node17-win ./main.js 
+      - run: pkg --targets node17-linux,node17-linux-arm64,node17-win ./main.js
       - run: ls
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: |
+            ./main-linux-arm64
+            ./main-linux-x64
+            ./main-win-x64.exe
