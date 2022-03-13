@@ -16,7 +16,7 @@ jobs:
           node-version: "17"
       - run: npm install
       - run: npm install -g pkg
-      - run: pkg --targets node17-linux,node17-linux-arm64,node17-win ./main.js
+      - run: pkg --targets node17-linux,node17-linux-arm64,node17-win --no-bytecode --public-packages "*" --public ./main.js
       - run: ls
 
       - uses: actions/upload-artifact@v3
@@ -26,3 +26,4 @@ jobs:
             ./main-linux-arm64
             ./main-linux-x64
             ./main-win-x64.exe
+ 
