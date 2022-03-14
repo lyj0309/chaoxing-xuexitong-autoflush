@@ -1,56 +1,15 @@
 # 超星学习通全自动刷课程序
 
-**更新日期: 2021-10-28**
+**更新日期: 2022-3-14**
 
----
 
-2020-5-21 更新内容:  
-添加了一个登录接口使得无验证码登录变得可能但是当新接口失效时会回退至上版本接口以保证程序可用性
+## 快速使用
+### 电脑端
+[点这里](https://blog.fakev.cn/posts/%E5%AD%A6%E4%B9%A0%E9%80%9A%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E8%A1%8C/)
+### 手机端
+[点这里](https://blog.fakev.cn/posts/%E5%AD%A6%E4%B9%A0%E9%80%9A%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85%E6%89%8B%E6%9C%BA%E5%91%BD%E4%BB%A4%E8%A1%8C/)
 
-增加了 config.json 文件，通过 config 文件可以实现无交互登录以及筛选需要刷的课程, 该文件不存在时程序会以默认方式运行  
-使用方法:  
-在程序根目录下增加 config.json 文件, 并按照以下形式进行编写
-
-```
-{
-	"uname": string, //手机号
-	"password": string, //密码
-	// 如果上面两个字段任何一个不存在程序都会让你输入一次完整的账号密码, 只有这两个是必要字段
-
-	"speed": number, // 刷课速度 默认为 2
-	"test": boolean, // 是否过测试 默认为true
-	"pick": boolean, // 是否通过配置文件进行课程配置 默认为false
-	// 以上默认值都之会在config.json读取成功且没有该字段时生效, 如果config.json不存在则全部由键盘输入
-	// 当pick为true时且pickinfos字段不存在, 程序只会记录所有课程并写入pickinfos然后结束, pickinfos字段存在时程序会读取pickinfos并跳过所有picked为false的课程
-
-	"pickinfos": {
-
-	}
-	// 该字段由程序生成请勿手动编写, 只需要调整该字段内picked值即可
-	// 重新获取课程请删除该字段而不仅是值
-
-}
-```
----
-
-声明: 本程序仅供学习研究程序工程原理
-
-![desc1](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
-![desc2](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
-![desc3](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
-
----
-
-```
-若该程序对你有帮助，请给作者一颗star以表示鼓励，谢谢！
-```
-
----
-
-用法:
-
----
-
+## 通过node使用
 ①
 
 ```
@@ -128,7 +87,7 @@ npm start
 的方式启动本程序
 
 ---
-使用 Docker 运行：
+## 通过docker使用
 
 clone 仓库:
 ```
@@ -148,6 +107,50 @@ docker build -t chaoxing .
 ```
 docker run -v ${PWD}/config.json:/app/config.json -it chaoxing 
 ```
+---
+
+2020-5-21 更新内容:  
+添加了一个登录接口使得无验证码登录变得可能但是当新接口失效时会回退至上版本接口以保证程序可用性
+
+增加了 config.json 文件，通过 config 文件可以实现无交互登录以及筛选需要刷的课程, 该文件不存在时程序会以默认方式运行  
+使用方法:  
+在程序根目录下增加 config.json 文件, 并按照以下形式进行编写
+
+```
+{
+	"uname": string, //手机号
+	"password": string, //密码
+	// 如果上面两个字段任何一个不存在程序都会让你输入一次完整的账号密码, 只有这两个是必要字段
+
+	"speed": number, // 刷课速度 默认为 2
+	"test": boolean, // 是否过测试 默认为true
+	"pick": boolean, // 是否通过配置文件进行课程配置 默认为false
+	// 以上默认值都之会在config.json读取成功且没有该字段时生效, 如果config.json不存在则全部由键盘输入
+	// 当pick为true时且pickinfos字段不存在, 程序只会记录所有课程并写入pickinfos然后结束, pickinfos字段存在时程序会读取pickinfos并跳过所有picked为false的课程
+
+	"pickinfos": {
+
+	}
+	// 该字段由程序生成请勿手动编写, 只需要调整该字段内picked值即可
+	// 重新获取课程请删除该字段而不仅是值
+
+}
+```
+---
+
+声明: 本程序仅供学习研究程序工程原理
+
+![desc1](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
+![desc2](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
+![desc3](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
+
+---
+
+```
+若该程序对你有帮助，请给作者一颗star以表示鼓励，谢谢！
+```
+
+
 
 ---
 

@@ -26,7 +26,8 @@ async function getUser(cookie) {
 	return user;
 }
 
-async function start() {
+
+export async function start(event, context) {
 	let config = await new Config("./config.json").read();
 	let cookie;
 	// if (config.saveCookie) {
@@ -95,4 +96,9 @@ async function debug(cookie) {
 	new task(picker.list.slice(6), user, speed);
 }
 
-start().catch(console.log);
+//start().catch(console.log);
+
+exports.main_handler = async (event, context) => {
+	start().catch(console.log);
+    return event
+};
