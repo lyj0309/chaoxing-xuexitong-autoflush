@@ -26,8 +26,7 @@ async function getUser(cookie) {
 	return user;
 }
 
-
-async function start(event, context) {
+async function start() {
 	let config = await new Config("./config.json").read();
 	let cookie;
 	// if (config.saveCookie) {
@@ -97,8 +96,3 @@ async function debug(cookie) {
 }
 
 start().catch(console.log);
-
-exports.main_handler = async (event, context) => {
-	start().catch(console.log);
-    return event
-};
