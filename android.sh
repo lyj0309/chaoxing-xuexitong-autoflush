@@ -13,11 +13,11 @@ yes n | apt upgrade -y
 
 apt install nodejs wget unzip npm -y
 
-wget https://gh.fakev.cn/lyj0309/chaoxing-xuexitong-autoflush/archive/refs/heads/master.zip
+wget -O cx.zip https://gh.fakev.cn/lyj0309/chaoxing-xuexitong-autoflush/archive/refs/heads/master.zip
 
-unzip master.zip
+unzip cx.zip
 
-rm master.zip
+rm cx.zip
 
 cd chaoxing-xuexitong-autoflush-master
 
