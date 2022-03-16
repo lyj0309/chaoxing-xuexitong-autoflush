@@ -17,6 +17,8 @@ wget https://gh.fakev.cn/lyj0309/chaoxing-xuexitong-autoflush/archive/refs/heads
 
 unzip master.zip
 
+rm master.zip
+
 cd chaoxing-xuexitong-autoflush-master
 
 npm config set registry https://registry.npm.taobao.org/

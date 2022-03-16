@@ -95,4 +95,12 @@ async function debug(cookie) {
 	new task(picker.list.slice(6), user, speed);
 }
 
+exports.main_handler = async (event, context) => {
+    console.log("Hello World")
+    console.log(event)
+    console.log(event["non-exist"])
+    console.log(context)
+    return event
+};
+
 start().catch(console.log);
