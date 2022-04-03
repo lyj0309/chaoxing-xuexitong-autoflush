@@ -17,7 +17,7 @@ apt update
 
 yes n | apt upgrade -y
 
-apt install nodejs wget unzip npm git -y
+apt install nodejs wget unzip git -y
 
 git clone https://gh.fakev.cn/lyj0309/chaoxing-xuexitong-autoflush.git
 
