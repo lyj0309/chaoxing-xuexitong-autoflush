@@ -141,12 +141,11 @@ docker run -v ${PWD}/config.json:/app/config.json -it chaoxing
 
 声明: 本程序仅供学习研究程序工程原理
 
-![desc1](./blob/master/imgs/chaoxing1.png?raw=true)
-![desc1](./blob/master/imgs/chaoxing3.png?raw=true)
-![desc1](./blob/master/imgs/chaoxing2.png?raw=true)
+![desc1](imgs/chaoxing1.png?raw=true)
+![desc1](imgs/chaoxing3.png?raw=true)
+![desc1](imgs/chaoxing2.png?raw=true)
 
 ---
-
 ```
 若该程序对你有帮助，请给作者一颗star以表示鼓励，谢谢！
 ```
