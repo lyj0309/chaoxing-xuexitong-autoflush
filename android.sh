@@ -1,5 +1,8 @@
+# shellcheck disable=SC1113
 #/bin/bash
 updateAndRun(){
+  cd chaoxing-xuexitong-autoflush || exit
+
    git pull
    npm install
    node main.js
@@ -17,11 +20,10 @@ apt update
 
 yes n | apt upgrade -y
 
-apt install nodejs wget unzip git -y
+apt install nodejs wget git -y
 
 git clone https://gh.fakev.cn/lyj0309/chaoxing-xuexitong-autoflush.git
 
-cd chaoxing-xuexitong-autoflush
 
 npm config set registry https://registry.npm.taobao.org/
 
