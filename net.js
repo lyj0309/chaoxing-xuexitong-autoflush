@@ -16,11 +16,22 @@ class Net {
     });
   }
 
+
+
   getCookies() {
     return new Promise((y) => {
       return this.jar.store.getAllCookies((err, data) => y(data[0]));
     });
   }
+
+  async getHeader(){
+    return {
+      Cookie: await this.getCookies(),
+      "User-Agent": Net.UserAgent,
+      "Referer": "https://mooc1-1.chaoxing.com",
+    }
+  }
+
   async get(page, query, savecookie) {
     if (!query) query = {};
     let obj = Object.assign(this.base, {
@@ -29,10 +40,7 @@ class Net {
     });
 
     let res = await fetch(url.format(obj), {
-      headers: {
-        Cookie: await this.getCookies(),
-        "User-Agent": Net.UserAgent,
-      },
+      headers: await this.getHeader(),
     });
     if (savecookie && res.headers.has("set-cookie"))
       await this.setCookie(res.headers.get("set-cookie"));
@@ -44,10 +52,7 @@ class Net {
   }
   async rawGet(page, savecookie) {
     let res = await fetch(this.base.href + page, {
-      headers: {
-        Cookie: await this.getCookies(),
-        "User-Agent": Net.UserAgent,
-      },
+      headers:await this.getHeader(),
     });
     if (savecookie)
       if (res.headers.has("set-cookie"))
@@ -57,10 +62,7 @@ class Net {
   }
   async getBin(page, savecookie) {
     let res = await fetch(this.base.href + page, {
-      headers: {
-        Cookie: await this.getCookies(),
-        "User-Agent": Net.UserAgent,
-      },
+      headers: await this.getHeader(),
     });
     if (savecookie)
       if (res.headers.has("set-cookie"))
