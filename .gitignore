@@ -7,3 +7,4 @@ config.json
 .idea/
 .vscode/
 cookie.txt
+*.exe

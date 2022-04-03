@@ -61,6 +61,12 @@ class CoursePicker {
   }
   async pick(config) {
     await this.getAllCourses();
+  
+
+    for (const i in this.list) {
+      this.toggle(this.list[i].clazzId)
+      // console.log(this.pickinfos)
+    }
 
     while (!config.pick && true) {
       this.printCoursesGUI();
