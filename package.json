@@ -10,6 +10,7 @@
     "node-fetch": "^2.6.0",
     "open": "^7.0.3",
     "prompts": "^2.3.2",
+    "single-line-log": "^1.1.2",
     "tough-cookie": "^4.0.0",
     "tty-table": "^4.1.1"
   },

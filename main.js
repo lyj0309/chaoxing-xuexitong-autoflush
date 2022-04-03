@@ -1,7 +1,8 @@
-console.log("版权声明:");
-console.log("作者: Wyatt Zheng");
-console.log("邮箱: yuxon@qq.com");
-console.log("\n");
+console.log("fake题-命令行:");
+// console.log("版权声明:");
+// console.log("作者: Wyatt Zheng");
+// console.log("邮箱: yuxon@qq.com");
+// console.log("\n");
 console.log("本作品仅提供学习及研究程序原理用途\n\n");
 
 const fs = require("fs");

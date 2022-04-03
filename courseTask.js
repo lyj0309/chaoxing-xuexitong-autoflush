@@ -3,6 +3,7 @@ var Net = require("./net.js");
 var chapterTask = require("./chapterTask.js");
 var Course = require("./course.js");
 var { LiveContainer, LiveArea } = require("clui-live");
+var log = require("single-line-log").stdout;
 
 class courseTask {
   constructor(courses, user, speed, autotest) {
@@ -15,11 +16,11 @@ class courseTask {
 
     setInterval(() => {
       this.drawGUI();
-    }, 1000);
+    }, 100);
     this.eventLoop();
   }
   async init() {
-    console.log("\n".repeat(30)); //清屏
+    //console.log("\n".repeat(30)); //清屏
 
     this.gui = new LiveContainer();
     this.gui_area = this.gui.createLiveArea();
@@ -39,13 +40,15 @@ class courseTask {
         (nextcourse ? nextcourse.title : "无") +
         "\n"
     );
-
-    if (lines.length < minheight)
-      for (let i = 0; i < minheight - lines.length; i++) lines.push("");
+    // if (lines.length < minheight)
+      // for (let i = 0; i < minheight - lines.length; i++) lines.push("");
 
     //for(let i in lines)
     //		this.gui_area.write(lines.join("\n"));
-    console.log(lines.join("\n"));
+    // console.clear()
+    // console.log(lines.join("\n"));
+    log(lines.join("\n"))
+    log.clear()
   }
   async doTick() {
     let course = this.courses.shift();

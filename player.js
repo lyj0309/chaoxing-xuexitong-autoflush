@@ -1,5 +1,37 @@
 var sleep = (t) => new Promise((y) => setTimeout(y, t));
 var Logger = require("./logger.js");
+class ProgressBar {
+  constructor(bar_length) {
+    // 两个基本参数(属性)
+    this.length = bar_length || 32; // 进度条的长度(单位：字符)，默认设为 35
+
+
+    // 刷新进度条图案、文字的方法
+    this.render = function (opts) {
+      var percent = (opts.completed / opts.total).toFixed(4); // 计算进度(子任务的 完成数 除以 总数)
+      var cell_num = Math.floor(percent * this.length); // 计算需要多少个 █ 符号来拼凑图案
+
+
+      // 拼接黑色条
+      var cell = '';
+      for (var i = 0; i < cell_num; i++) {
+        cell += '█';
+      }
+
+      // 拼接灰色条
+      var empty = '';
+      for (var i = 0; i < this.length - cell_num; i++) {
+        empty += '░';
+      }
+
+      // 拼接最终文本
+      var cmdText =  (100 * percent).toFixed(2) + '% ' + cell + empty + ' ' + opts.completed + '/' + opts.total;
+      return cmdText;
+    };
+  }
+}
+
+var pb = new ProgressBar();
 
 class Player {
   constructor(classid, user, video, speed) {
@@ -15,7 +47,7 @@ class Player {
     this.reportTimeInterval = 60 * 1000;
     this.tick = this.reportTimeInterval; //确保视频刚开始report一次
 
-    this.simspeed = 5 * 1000; //更新速度;
+    this.simspeed =  100; //更新速度;
     this.eventLoop();
   }
   async wait(timeout) {
@@ -45,12 +77,14 @@ class Player {
     );
   }
   async doTick() {
-    let status = JSON.parse(
-      await this.user.net.rawGet(
-        `ananas/status/${this.playing.objectId}?k=9790&flag=normal&_dc=` +
-          new Date().getTime()
-      )
+    const rawJson = await this.user.net.rawGet(
+      `ananas/status/${this.playing.objectId}?k=9790&flag=normal&_dc=` +
+        new Date().getTime()
     );
+    // console.log("status",rawJson);
+
+    let status = JSON.parse(rawJson);
+
 
     let duration = status.duration;
     // 		if(duration<60*6) //小于6分钟的完整看完
@@ -64,7 +98,7 @@ class Player {
       return;
     }
 
-    let loginfo = `下次报告: ${(this.reportTimeInterval - this.tick) / 1000}s`;
+    let loginfo = `下次报告: ${((this.reportTimeInterval - this.tick) / 1000).toFixed(1)}s`;
 
     let reportinfo = "";
     if (this.progress / 1000 >= duration) {
@@ -89,12 +123,14 @@ class Player {
       this.speed.toFixed(1) +
       " 倍速播放:  " +
       this.playing.property.name +
-      "  " +
-      ((this.progress / 1000 / duration) * 100).toFixed(2) +
-      "% " +
-      (this.progress / 1000 + "/" + duration) +
+      // "  " +
+      // ((this.progress / 1000 / duration) * 100).toFixed(2) +
+      // "% " +
+      // ((this.progress / 1000).toFixed(1) + "/" + duration) +
       "   " +
-      loginfo;
+      loginfo+
+      "\n"+
+      pb.render({ completed: parseInt(this.progress / 1000), total: duration });
     this.progress += parseInt(this.speed * this.simspeed);
   }
   async eventLoop() {
@@ -110,5 +146,8 @@ class Player {
     }
   }
 }
+
+
+
 
 module.exports = Player;
