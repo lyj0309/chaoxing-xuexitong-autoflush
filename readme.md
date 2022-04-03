@@ -141,9 +141,9 @@ docker run -v ${PWD}/config.json:/app/config.json -it chaoxing
 
 声明: 本程序仅供学习研究程序工程原理
 
-![desc1](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing1.png)
-![desc2](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing3.png)
-![desc3](https://raw.githubusercontent.com/wyattzheng/chaoxing-xuexitong-autoflush/master/imgs/chaoxing2.png)
+![desc1](./blob/master/imgs/chaoxing1.png?raw=true)
+![desc1](./blob/master/imgs/chaoxing3.png?raw=true)
+![desc1](./blob/master/imgs/chaoxing2.png?raw=true)
 
 ---
 
