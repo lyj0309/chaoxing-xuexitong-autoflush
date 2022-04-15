@@ -16,7 +16,7 @@ class courseTask {
 
     setInterval(() => {
       this.drawGUI();
-    }, 100);
+    }, 1000);
     this.eventLoop();
   }
   async init() {
@@ -48,7 +48,7 @@ class courseTask {
     // console.clear()
     // console.log(lines.join("\n"));
     log(lines.join("\n"))
-    log.clear()
+    // log.clear()
   }
   async doTick() {
     let course = this.courses.shift();
