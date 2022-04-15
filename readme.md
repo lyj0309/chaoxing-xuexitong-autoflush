@@ -12,7 +12,7 @@
 ①
 
 ```
-git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
+git clone https://github.com/lyj0309/chaoxing-xuexitong-autoflush
 ```
 
 ②
