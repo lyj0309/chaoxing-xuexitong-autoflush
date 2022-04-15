@@ -1,7 +1,5 @@
 # 超星学习通全自动刷课程序
 
-**更新日期: 2022-3-14**
-
 ## 有任何问题通过issue提问
 
 ## 快速使用
@@ -53,9 +51,9 @@ Windows (x64)系统:
 ⑥ 依次敲入命令并执行
 
 ```
-git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
+git clone https://github.com/lyj0309/chaoxing-xuexitong-autoflush
 可以使用镜像站来解决仓库克隆的网络问题：
-git clone https://hub.fastgit.org/wyattzheng/chaoxing-xuexitong-autoflush
+git clone https://hub.fastgit.org/lyj0309/chaoxing-xuexitong-autoflush
 ```
 
 ```
@@ -92,7 +90,7 @@ npm start
 
 clone 仓库:
 ```
-git clone https://github.com/wyattzheng/chaoxing-xuexitong-autoflush
+git clone https://github.com/lyj0309/chaoxing-xuexitong-autoflush
 ```
 
 构建镜像：
@@ -160,3 +158,7 @@ docker run -v ${PWD}/config.json:/app/config.json -it chaoxing
 本程序会自动遍历你的所有课程，课程的所有章节，甚至包括上锁的章节内的视频都会被自动刷完。
 所以你可以挂机本程序至后台。因为由 Node.js 平台编写，你可以在Linux下运行本程序.
 ```
+
+> 致谢
+原仓库地址<https://github.com/RainySY/chaoxing-xuexitong-autoflush>
+由于作者已经不更新，所以重建了这个仓库
