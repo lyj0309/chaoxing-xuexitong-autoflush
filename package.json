@@ -8,7 +8,7 @@
     "cheerio": "^1.0.0-rc.11",
     "clui-live": "^0.3.4",
     "node-fetch": "^3.2.6",
-    "open": "^7.0.3",
+    "open": "^8.4.0",
     "prompts": "^2.3.2",
     "single-line-log": "^1.1.2",
     "tough-cookie": "^4.0.0",
