@@ -12,7 +12,7 @@
     "prompts": "^2.3.2",
     "single-line-log": "^1.1.2",
     "tough-cookie": "^4.0.0",
-    "tty-table": "^4.1.1"
+    "tty-table": "^4.1.6"
   },
   "scripts": {
     "start": "node main.js"
